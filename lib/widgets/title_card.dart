@@ -11,46 +11,61 @@ class TitleCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      elevation: 5,
-      color: Theme.of(context).cardColor,
+      // elevation: 5,
+      color: Colors.transparent,
       margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
       clipBehavior: Clip.hardEdge,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          minHeight: 100,
-        ),
-        child: InkWell(
-          onTap: () {},
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                // height: 200,
-                child: Image.network(
+      child: InkWell(
+        onTap: () {},
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Stack(
+              children: [
+                Image.network(
                   'https://assetsio.reedpopcdn.com/d3kbgdsu8aahbys.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp',
                   height: 200.0,
+                  width: double.infinity,
                   fit: BoxFit.cover,
                 ),
-              ),
-              Column(
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.all(3.0),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Text(
+                  Text(
                     'Avengers End Game',
                     style: TextStyle(
                       fontSize: 13.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
                   // const SizedBox(height: 5.0),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(Icons.date_range,
-                          size: 15.0, color: Theme.of(context).primaryColor),
-                      const SizedBox(width: 5.0),
-                      const Text(
-                        '10/11/2019',
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.movie,
+                            size: 15.0,
+                          ),
+                          SizedBox(width: 5.0),
+                          Text(
+                            'Filme',
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'Documentário',
                         style: TextStyle(
                           fontSize: 12.0,
                           color: Colors.grey,
@@ -59,28 +74,14 @@ class TitleCard extends StatelessWidget {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Icon(Icons.date_range,
-                          size: 15.0, color: Theme.of(context).primaryColor),
-                      const SizedBox(width: 5.0),
-                      const Text(
-                        '10/11/2019',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.grey,
-                        ),
+                      Icon(
+                        Icons.date_range,
+                        size: 15.0,
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Icon(Icons.date_range,
-                          size: 15.0, color: Theme.of(context).primaryColor),
-                      const SizedBox(width: 5.0),
-                      const Text(
-                        '10/11/2019',
+                      SizedBox(width: 5.0),
+                      Text(
+                        '2019',
                         style: TextStyle(
                           fontSize: 12.0,
                           color: Colors.grey,
@@ -90,8 +91,8 @@ class TitleCard extends StatelessWidget {
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

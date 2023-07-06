@@ -13,7 +13,9 @@ class HomePage extends StatelessWidget {
       ),
       body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: (0.26 / .4)),
+            crossAxisCount: 2,
+            childAspectRatio: 0.7,
+          ),
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return const TitleCard();
