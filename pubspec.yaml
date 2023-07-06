@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_web_pagination: ^0.0.3
   flutter_pagination: ^0.0.8
+  provider: ^6.0.5
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:
