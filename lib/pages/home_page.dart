@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/titles_provider.dart';
 import '../widgets/filter_modal.dart';
 import '../widgets/title_card.dart';
 
@@ -8,6 +10,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titlesProvider = Provider.of<TitlesProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Catalog Flix'),
@@ -30,9 +33,11 @@ class HomePage extends StatelessWidget {
             crossAxisCount: 2,
             childAspectRatio: 0.7,
           ),
-          itemCount: 10,
+          itemCount: titlesProvider.images.length,
           itemBuilder: (BuildContext context, int index) {
-            return const TitleCard();
+            return TitleCard(
+              url: titlesProvider.images[index],
+            );
           }),
     );
   }

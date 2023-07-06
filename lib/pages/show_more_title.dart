@@ -75,7 +75,6 @@ class ShowMoreTitle extends StatelessWidget {
             height: 10.0,
           ),
           Row(
-            // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(

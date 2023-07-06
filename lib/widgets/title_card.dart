@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../app/routes/routes.dart';
 
 class TitleCard extends StatelessWidget {
+  final String url;
   const TitleCard({
     super.key,
+    required this.url,
   });
 
   @override
@@ -27,7 +29,7 @@ class TitleCard extends StatelessWidget {
             Stack(
               children: [
                 Image.network(
-                  'https://assetsio.reedpopcdn.com/d3kbgdsu8aahbys.jpg?width=1200&height=1200&fit=bounds&quality=70&format=jpg&auto=webp',
+                  url,
                   height: 200.0,
                   width: double.infinity,
                   fit: BoxFit.cover,

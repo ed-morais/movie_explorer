@@ -12,7 +12,7 @@ class FilterModal extends StatelessWidget {
     // double ratingValue = configAppRate.rate;
     return AlertDialog(
       title: const Text(
-        'Rate the app!',
+        'Filtro de Pesquisa',
         textAlign: TextAlign.center,
       ),
 
@@ -34,7 +34,7 @@ class FilterModal extends StatelessWidget {
             Navigator.of(context).pop();
           },
           child: const Text(
-            'OK',
+            'Filtrar',
             style: TextStyle(color: Colors.white),
           ),
         ),
