@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../app/routes/routes.dart';
+
 class TitleCard extends StatelessWidget {
   const TitleCard({
     super.key,
@@ -16,7 +18,9 @@ class TitleCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(RoutesApp.showMoreTitle);
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
