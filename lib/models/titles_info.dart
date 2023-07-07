@@ -4,10 +4,9 @@ class TitleInfo {
   String title;
   String typeTitle;
   List<dynamic> genre;
-
   String year;
   String sinopse;
-  String rating;
+  num? rating;
   bool isSerie;
   int? seasons;
 

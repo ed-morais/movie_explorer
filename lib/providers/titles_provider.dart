@@ -48,8 +48,8 @@ class TitlesProvider with ChangeNotifier {
             : 'https://nerdweb.com.br/uploads/1578511646-cropit-.jpg',
         genre: getGenres(elem['genres']['genres'])
 ,
-        rating: elem['ratingsSummary']?['aggregateRating']?.toString() ??
-            "Não fornecido",
+        rating: elem['ratingsSummary']?['aggregateRating'] ??
+            0.0,
         title: elem['titleText']?['text'] ?? "Não fornecido",
         sinopse: elem['plot']?['plotText']?['plainText'] ?? "Não fornecido",
         typeTitle: elem['titleType']?['text'] ?? "Não fornecido",
