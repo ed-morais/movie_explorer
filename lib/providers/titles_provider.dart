@@ -54,4 +54,9 @@ class TitlesProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void clearTitles() {
+    _titles.clear();
+    notifyListeners();
+  }
 }

@@ -32,12 +32,12 @@ class _PaginateState extends State<Paginate> {
           buttonBackgroundColor: Colors.green,
           borderRadius: const BorderRadius.only(
               topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
-      onPageChange: (number) {
+      onPageChange: (number) async {
         setState(() {
           page.page = number;
         });
-        page.titles.clear();
-        page.fetchTitles('$kBaseUrl&page=${page.page}');
+        page.clearTitles();
+        await page.fetchTitles('$kBaseUrl&page=${page.page}');
       },
       useGroup: true,
       totalPage: 50,

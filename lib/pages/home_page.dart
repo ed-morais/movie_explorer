@@ -62,21 +62,29 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 10.0,
           ),
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.6,
-              ),
-              itemCount: titlesProvider.titles.length,
-              itemBuilder: (BuildContext context, int index) {
-                return TitleCard(
-                  titleInfos: titlesProvider.titles[index],
-                  // url: titlesProvider.images[index],
-                );
-              },
-            ),
-          ),
+          titlesProvider.titles.isEmpty
+              ? Center(
+                  child: Container(
+                    margin: const EdgeInsets.all(30.0),
+                    child: const CircularProgressIndicator(),
+                  ),
+                )
+              : Expanded(
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.6,
+                    ),
+                    itemCount: titlesProvider.titles.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return TitleCard(
+                        titleInfos: titlesProvider.titles[index],
+                        // url: titlesProvider.images[index],
+                      );
+                    },
+                  ),
+                ),
         ],
       ),
       bottomNavigationBar: SizedBox(

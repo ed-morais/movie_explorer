@@ -15,9 +15,9 @@ class FilterOption extends StatelessWidget {
   Widget build(BuildContext context) {
     final titleProvider = Provider.of<TitlesProvider>(context, listen: false);
     return GestureDetector(
-      onTap: () {
-        titleProvider.titles.clear();
-        titleProvider.fetchTitles('$kBaseUrl&genre=$genre');
+      onTap: () async {
+        titleProvider.clearTitles();
+        await titleProvider.fetchTitles('$kBaseUrl&genre=$genre');
       },
       child: Container(
         alignment: Alignment.center,
