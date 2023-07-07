@@ -11,8 +11,7 @@ class TitlesProvider with ChangeNotifier {
 
   final List<EpisodeInfo> episodes = [];
   final List<String> episodesId = [];
-  // int seasons = 0;
-
+  late int statusRequisition;
   int page = 1;
   List<TitleInfo> get titles => _titles;
 
@@ -26,13 +25,12 @@ class TitlesProvider with ChangeNotifier {
         'X-RapidAPI-Host': kXRapidAPIHost
       },
     );
-
+    statusRequisition = response.statusCode;
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
       final List<Map<String, dynamic>> titlesList =
           List.castFrom(body['results']);
 
-      // debugPrint(titlesList.toString());
       populateImages(titlesList);
     } else {
       debugPrint('>>>>>>>>>>>>>>>>>>>>>>>Erro ao carregar dados da API');
@@ -46,10 +44,8 @@ class TitlesProvider with ChangeNotifier {
         url: elem['primaryImage'] != null
             ? elem['primaryImage']['url']
             : 'https://nerdweb.com.br/uploads/1578511646-cropit-.jpg',
-        genre: getGenres(elem['genres']['genres'])
-,
-        rating: elem['ratingsSummary']?['aggregateRating'] ??
-            0.0,
+        genre: getGenres(elem['genres']['genres']),
+        rating: elem['ratingsSummary']?['aggregateRating'] ?? 0.0,
         title: elem['titleText']?['text'] ?? "Não fornecido",
         sinopse: elem['plot']?['plotText']?['plainText'] ?? "Não fornecido",
         typeTitle: elem['titleType']?['text'] ?? "Não fornecido",
@@ -66,6 +62,7 @@ class TitlesProvider with ChangeNotifier {
 
   Future<void> getEpisodesId(String id) async {
     episodesId.clear();
+    episodes.clear();
     final Uri url =
         Uri.parse('https://moviesdatabase.p.rapidapi.com/titles/series/$id');
 
@@ -134,10 +131,9 @@ class TitlesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
-  List<String> getGenres(List<dynamic> genres){
+  List<String> getGenres(List<dynamic> genres) {
     List<String> genresList = [];
-    for (var genre in genres){
+    for (var genre in genres) {
       genresList.add(
         genre['text'],
       );

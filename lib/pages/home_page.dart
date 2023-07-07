@@ -16,17 +16,56 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Widget indicatorRequest = Center(
+    child: Container(
+      margin: const EdgeInsets.all(30.0),
+      child: const CircularProgressIndicator(
+        color: Colors.green,
+      ),
+    ),
+  );
   @override
   void initState() {
-    final titlesProvider = Provider.of<TitlesProvider>(context, listen: false);
-    titlesProvider.fetchTitles('$kBaseUrl&page=1');
+    _loadTitles();
     super.initState();
+  }
+
+  _loadTitles() async {
+    final titlesProvider = Provider.of<TitlesProvider>(context, listen: false);
+    await titlesProvider.fetchTitles('$kBaseUrl&page=1');
+    if (titlesProvider.statusRequisition != 200) {
+      setState(() {
+        error();
+      });
+    }
+  }
+
+  void error() {
+    setState(() {
+      indicatorRequest = const Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          SizedBox(
+            height: 50.0,
+          ),
+          Icon(
+            Icons.error_outline,
+            color: Colors.red,
+            size: 50.0,
+          ),
+          SizedBox(height: 10.0,),
+          Text(
+            'Erro ao carregar informações da API',
+            style: TextStyle(fontSize: 20.0),
+          )
+        ],
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final titlesProvider = Provider.of<TitlesProvider>(context, listen: true);
-    // titlesProvider.fetchTitles();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Catalog Flix'),
@@ -63,12 +102,7 @@ class _HomePageState extends State<HomePage> {
             height: 10.0,
           ),
           titlesProvider.titles.isEmpty
-              ? Center(
-                  child: Container(
-                    margin: const EdgeInsets.all(30.0),
-                    child: const CircularProgressIndicator(),
-                  ),
-                )
+              ? indicatorRequest
               : Expanded(
                   child: GridView.builder(
                     gridDelegate:

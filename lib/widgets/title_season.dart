@@ -19,12 +19,13 @@ class SeasonTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          'Temporada ${index.toString()}',
+          '${index.toString()}ª Temporada',
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 20.0,
           ),
         ),
+        const Divider(color: Colors.green,),
         const SizedBox(height: 15.0,),
         SizedBox( // Usando SizedBox para definir uma altura para o ListView
           height: 180, // Defina a altura desejada aqui
