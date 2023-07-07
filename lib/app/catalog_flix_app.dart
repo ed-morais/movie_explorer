@@ -19,7 +19,6 @@ class CatalogFlixApp extends StatelessWidget {
         theme: ThemeData(useMaterial3: true, brightness: Brightness.dark),
         title: 'Catalog Flix',
         initialRoute: RoutesApp.home,
-
         routes: {
           RoutesApp.home: (context) => const HomePage(),
           RoutesApp.showMoreTitle: (context) {
@@ -28,7 +27,6 @@ class CatalogFlixApp extends StatelessWidget {
             return ShowMoreTitle(titleInfos: titleInfos);
           },
         },
-        // home: const HomePage(),
       ),
     );
   }
