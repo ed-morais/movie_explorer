@@ -19,8 +19,8 @@ class TitleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       // elevation: 5,
-      color: Colors.transparent,
-      margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+      color: const Color.fromARGB(0, 0, 0, 0),
+      // margin: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {
@@ -42,64 +42,70 @@ class TitleCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(3.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    titleInfos.title,
-                    style: const TextStyle(
-                      fontSize: 13.0,
-                      fontWeight: FontWeight.bold,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      titleInfos.title,
+                      style: const TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-
-                  // const SizedBox(height: 5.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.movie,
-                            size: 15.0,
+              
+                    // const SizedBox(height: 5.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.movie,
+                              size: 15.0,
+                            ),
+                            const SizedBox(width: 5.0),
+                            Text(
+                              titleInfos.typeTitle,
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                        
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.date_range,
+                          size: 15.0,
+                        ),
+                        const SizedBox(width: 5.0),
+                        Text(
+                          titleInfos.year,
+                          style: const TextStyle(
+                            fontSize: 12.0,
+                            color: Colors.grey,
                           ),
-                          const SizedBox(width: 5.0),
-                          Text(
-                            titleInfos.typeTitle,
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                            titleInfos.genre.join(', '),
                             style: const TextStyle(
                               fontSize: 12.0,
                               color: Colors.grey,
                             ),
                           ),
-                        ],
-                      ),
-                      Text(
-                        titleInfos.genre,
-                        style: const TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.date_range,
-                        size: 15.0,
-                      ),
-                      const SizedBox(width: 5.0),
-                      Text(
-                        titleInfos.year,
-                        style: const TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

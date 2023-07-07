@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/titles_info.dart';
+import '../providers/titles_provider.dart';
 import '../utils/custom_shape.dart';
 import '../widgets/title_season.dart';
 
-class ShowMoreTitle extends StatelessWidget {
+class ShowMoreTitle extends StatefulWidget {
   final TitleInfo titleInfos;
   const ShowMoreTitle({
     super.key,
@@ -12,7 +14,22 @@ class ShowMoreTitle extends StatelessWidget {
   });
 
   @override
+  State<ShowMoreTitle> createState() => _ShowMoreTitleState();
+}
+
+class _ShowMoreTitleState extends State<ShowMoreTitle> {
+  @override
+  void initState() {
+    if (widget.titleInfos.isSerie) {
+      final providerTitle = Provider.of<TitlesProvider>(context, listen: false);
+      providerTitle.getEpisodesId(widget.titleInfos.id);
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final providerTitle = Provider.of<TitlesProvider>(context, listen: false);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(420),
@@ -27,7 +44,7 @@ class ShowMoreTitle extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    titleInfos.url,
+                    widget.titleInfos.url,
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -42,7 +59,7 @@ class ShowMoreTitle extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              titleInfos.title,
+              widget.titleInfos.title,
               textAlign: TextAlign.center,
               style:
                   const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
@@ -51,11 +68,14 @@ class ShowMoreTitle extends StatelessWidget {
               height: 10.0,
             ),
             Text(
-              titleInfos.genre,
+              widget.titleInfos.genre.join(', '),
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 16.0,
+                fontSize: 15.0,
               ),
+            ),
+            const SizedBox(
+              height: 10.0,
             ),
             const Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,7 +116,7 @@ class ShowMoreTitle extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      titleInfos.year,
+                      widget.titleInfos.year,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20.0,
@@ -115,7 +135,7 @@ class ShowMoreTitle extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      titleInfos.typeTitle,
+                      widget.titleInfos.typeTitle,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20.0,
@@ -134,7 +154,7 @@ class ShowMoreTitle extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      titleInfos.rating,
+                      widget.titleInfos.rating,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 20.0,
@@ -143,31 +163,29 @@ class ShowMoreTitle extends StatelessWidget {
                     ),
                   ],
                 ),
-                
               ],
             ),
             Padding(
               padding: const EdgeInsets.all(14.0),
               child: Text(
-                titleInfos.sinopse,
+                widget.titleInfos.sinopse,
                 textAlign: TextAlign.justify,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: 3,
-                itemBuilder: ((context, index) =>  const SeasonTitle(index:1))
-                  
-              ),
-            )
+            widget.titleInfos.isSerie == false
+                ? const Text('não é série')
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0,),
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: widget.titleInfos.seasons,
+                        itemBuilder: ((context, index) =>
+                            SeasonTitle(index: index + 1))),
+                  )
           ],
-          
         ),
       ),
     );
   }
 }
-

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/titles_provider.dart';
 import 'episode_card.dart';
 
 class SeasonTitle extends StatelessWidget {
@@ -11,6 +13,7 @@ class SeasonTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final titleSeason = Provider.of<TitlesProvider>(context, listen: true);
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -25,17 +28,14 @@ class SeasonTitle extends StatelessWidget {
         const SizedBox(height: 15.0,),
         SizedBox( // Usando SizedBox para definir uma altura para o ListView
           height: 180, // Defina a altura desejada aqui
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            children: const <Widget>[
-              EpisodeCard(),
-              EpisodeCard(),
-              EpisodeCard(),
-              EpisodeCard(),
-              EpisodeCard(),
-            ],
-          ),
+          child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: titleSeason.episodes.length,
+                itemBuilder: ((context, index) =>  EpisodeCard(episodeinfo: titleSeason.episodes[index]))
+                  
+              ),
+          
         ),
       ],
     );
