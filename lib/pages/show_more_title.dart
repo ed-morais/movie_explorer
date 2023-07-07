@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../models/titles_info.dart';
 import '../utils/custom_shape.dart';
 
 class ShowMoreTitle extends StatelessWidget {
-  const ShowMoreTitle({super.key});
+  final TitleInfo titleInfos;
+  const ShowMoreTitle({
+    super.key,
+    required this.titleInfos,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +23,11 @@ class ShowMoreTitle extends StatelessWidget {
                 CustomShape(), // this is my own class which extendsCustomClipper
             child: Container(
               // height: 800,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                      'https://media.s-bol.com/mlg4wxE7RwA/550x824.jpg'),
+                    titleInfos.url,
+                  ),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -29,26 +35,26 @@ class ShowMoreTitle extends StatelessWidget {
           ),
         ),
       ),
-      body: const Column(
+      body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Avengers End Game',
+            titleInfos.title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           ),
           Text(
-            'Ação/Ficção científica',
+            titleInfos.genre,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16.0,
             ),
           ),
-          Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -71,7 +77,7 @@ class ShowMoreTitle extends StatelessWidget {
               Icon(Icons.star),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           ),
           Row(
@@ -79,7 +85,7 @@ class ShowMoreTitle extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Text(
+                  const Text(
                     'Ano',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -87,9 +93,9 @@ class ShowMoreTitle extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '2019',
+                    titleInfos.year,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -98,7 +104,7 @@ class ShowMoreTitle extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Text(
+                  const Text(
                     'Tipo',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -106,9 +112,9 @@ class ShowMoreTitle extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Filme',
+                    titleInfos.typeTitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -117,7 +123,7 @@ class ShowMoreTitle extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Text(
+                  const Text(
                     'Avaliação',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -125,9 +131,9 @@ class ShowMoreTitle extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '3.9',
+                    titleInfos.rating,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -137,9 +143,9 @@ class ShowMoreTitle extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: EdgeInsets.all(14.0),
+            padding: const EdgeInsets.all(14.0),
             child: Text(
-              'After Thanos wipes out half of all living creatures, the Avengers must deal with the loss of friends and loved ones. With Tony Stark wandering lost in space without food or water, Steve Rogers and Natasha Romanov lead the resistance against the mad titan.',
+              titleInfos.sinopse,
               textAlign: TextAlign.justify,
             ),
           ),

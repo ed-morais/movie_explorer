@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/titles_info.dart';
 import '../pages/home_page.dart';
 import '../pages/show_more_title.dart';
 import '../providers/titles_provider.dart';
@@ -21,7 +22,11 @@ class CatalogFlixApp extends StatelessWidget {
 
         routes: {
           RoutesApp.home: (context) => const HomePage(),
-          RoutesApp.showMoreTitle: (context) => const ShowMoreTitle(),
+          RoutesApp.showMoreTitle: (context) {
+            final titleInfos =
+                ModalRoute.of(context)?.settings.arguments as TitleInfo;
+            return ShowMoreTitle(titleInfos: titleInfos);
+          },
         },
         // home: const HomePage(),
       ),

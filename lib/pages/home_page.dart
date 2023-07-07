@@ -4,12 +4,25 @@ import 'package:provider/provider.dart';
 import '../providers/titles_provider.dart';
 import '../widgets/title_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
     final titlesProvider = Provider.of<TitlesProvider>(context, listen: false);
+    titlesProvider.fetchTitles();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final titlesProvider = Provider.of<TitlesProvider>(context, listen: true);
+    // titlesProvider.fetchTitles();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Catalog Flix'),
@@ -17,12 +30,13 @@ class HomePage extends StatelessWidget {
       body: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 0.7,
+            childAspectRatio: 0.6,
           ),
-          itemCount: titlesProvider.images.length,
+          itemCount: titlesProvider.titles.length,
           itemBuilder: (BuildContext context, int index) {
             return TitleCard(
-              url: titlesProvider.images[index],
+              titleInfos: titlesProvider.titles[index],
+              // url: titlesProvider.images[index],
             );
           }),
     );

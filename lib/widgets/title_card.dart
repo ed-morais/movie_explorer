@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../app/routes/routes.dart';
+import '../models/titles_info.dart';
 
 class TitleCard extends StatelessWidget {
-  final String url;
+  // final String url;
+  final TitleInfo titleInfos;
   const TitleCard({
     super.key,
-    required this.url,
+    required this.titleInfos,
+    // required this.url,
   });
 
   @override
@@ -21,7 +24,8 @@ class TitleCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushNamed(RoutesApp.showMoreTitle);
+          Navigator.of(context)
+              .pushNamed(RoutesApp.showMoreTitle, arguments: titleInfos);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,22 +33,22 @@ class TitleCard extends StatelessWidget {
             Stack(
               children: [
                 Image.network(
-                  url,
+                  titleInfos.url,
                   height: 200.0,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.all(3.0),
+            Padding(
+              padding: const EdgeInsets.all(3.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'Avengers End Game',
-                    style: TextStyle(
+                    titleInfos.title,
+                    style: const TextStyle(
                       fontSize: 13.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -56,14 +60,14 @@ class TitleCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.movie,
                             size: 15.0,
                           ),
-                          SizedBox(width: 5.0),
+                          const SizedBox(width: 5.0),
                           Text(
-                            'Filme',
-                            style: TextStyle(
+                            titleInfos.typeTitle,
+                            style: const TextStyle(
                               fontSize: 12.0,
                               color: Colors.grey,
                             ),
@@ -71,8 +75,8 @@ class TitleCard extends StatelessWidget {
                         ],
                       ),
                       Text(
-                        'Documentário',
-                        style: TextStyle(
+                        titleInfos.genre,
+                        style: const TextStyle(
                           fontSize: 12.0,
                           color: Colors.grey,
                         ),
@@ -81,14 +85,14 @@ class TitleCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.date_range,
                         size: 15.0,
                       ),
-                      SizedBox(width: 5.0),
+                      const SizedBox(width: 5.0),
                       Text(
-                        '2019',
-                        style: TextStyle(
+                        titleInfos.year,
+                        style: const TextStyle(
                           fontSize: 12.0,
                           color: Colors.grey,
                         ),
