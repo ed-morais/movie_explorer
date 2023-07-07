@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/titles_info.dart';
 import '../utils/custom_shape.dart';
+import '../widgets/title_season.dart';
 
 class ShowMoreTitle extends StatelessWidget {
   final TitleInfo titleInfos;
@@ -141,7 +142,8 @@ class ShowMoreTitle extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
+                
               ],
             ),
             Padding(
@@ -151,9 +153,21 @@ class ShowMoreTitle extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: 3,
+                itemBuilder: ((context, index) =>  const SeasonTitle(index:1))
+                  
+              ),
+            )
           ],
+          
         ),
       ),
     );
   }
 }
+
