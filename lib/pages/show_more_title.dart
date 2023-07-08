@@ -31,7 +31,7 @@ class _ShowMoreTitleState extends State<ShowMoreTitle> {
 
   @override
   Widget build(BuildContext context) {
-    // Provider.of<TitlesProvider>(context, listen: false);
+    final providerTitle = Provider.of<TitlesProvider>(context, listen: true);
 
     return Scaffold(
       body: CustomScrollView(
@@ -149,6 +149,7 @@ class _ShowMoreTitleState extends State<ShowMoreTitle> {
                     ),
                   ),
                   if (widget.titleInfos.isSerie)
+                    providerTitle.episodes.isEmpty ? const LinearProgressIndicator(color: Colors.green,) :
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: ListView.builder(

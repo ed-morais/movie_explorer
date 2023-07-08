@@ -111,7 +111,6 @@ class TitlesProvider with ChangeNotifier {
           episodes.add(EpisodeInfo(
             id: data['id'],
             title: data['titleText']['text'] ?? 'Não fornecido',
-            genre: "Série",
             imgUrl: data['primaryImage'] != null
                 ? data['primaryImage']['url']
                 : "https://www.online-tech-tips.com/wp-content/uploads/2022/03/image-41.jpeg",
@@ -119,7 +118,7 @@ class TitlesProvider with ChangeNotifier {
           notifyListeners();
         });
 
-        debugPrint(episodes.toString());
+        // debugPrint(episodes.toString());
       } else {
         debugPrint('>>>>>>>>>>>>>>>>>>>>>>>Erro ao carregar dados da API');
       }

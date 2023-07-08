@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../app/config/const.dart';
 import '../providers/titles_provider.dart';
-import '../widgets/filter_modal.dart';
+import '../widgets/info_modal.dart';
 import '../widgets/filter_option.dart';
 import '../widgets/paginate.dart';
 import '../widgets/title_card.dart';
@@ -75,11 +75,11 @@ class _HomePageState extends State<HomePage> {
               showDialog(
                 context: context,
                 builder: (context) {
-                  return const FilterModal();
+                  return const InfoModal();
                 },
               );
             },
-            icon: const Icon(Icons.manage_search),
+            icon: const Icon(Icons.group),
           ),
         ],
       ),
@@ -88,15 +88,19 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 40,
             child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: kgenres.length,
-              itemBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  width: 150,
-                  child: FilterOption(genre: kgenres[index]),
-                );
-              },
-            ),
+  scrollDirection: Axis.horizontal,
+  itemCount: kGenres.length,
+  itemBuilder: (BuildContext context, int index) {
+    String genre = kGenres.keys.elementAt(index);
+    // debugPrint(genre);
+    String enGenre = genre;
+    String ptBrGenre = kGenres[genre]!;
+    return SizedBox(
+      width: 150,
+      child: FilterOption(ptGenre: ptBrGenre, enGenre: enGenre),
+    );
+  },
+),
           ),
           const SizedBox(
             height: 10.0,

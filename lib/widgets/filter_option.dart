@@ -5,10 +5,13 @@ import '../app/config/const.dart';
 import '../providers/titles_provider.dart';
 
 class FilterOption extends StatelessWidget {
-  final String genre;
+  final String ptGenre;
+  final String enGenre;
+
   const FilterOption({
     super.key,
-    required this.genre,
+    required this.ptGenre,
+    required this.enGenre,
   });
 
   @override
@@ -17,7 +20,7 @@ class FilterOption extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         titleProvider.clearTitles();
-        await titleProvider.fetchTitles('$kBaseUrl&genre=$genre');
+        await titleProvider.fetchTitles('$kBaseUrl&genre=$enGenre');
       },
       child: Container(
         alignment: Alignment.center,
@@ -26,7 +29,7 @@ class FilterOption extends StatelessWidget {
             color: Colors.green,
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
         child: Text(
-          genre,
+          ptGenre,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
         ),
       ),
