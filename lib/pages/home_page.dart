@@ -53,7 +53,9 @@ class _HomePageState extends State<HomePage> {
             color: Colors.red,
             size: 50.0,
           ),
-          SizedBox(height: 10.0,),
+          SizedBox(
+            height: 10.0,
+          ),
           Text(
             'Erro ao carregar informações da API',
             style: TextStyle(fontSize: 20.0),
@@ -88,19 +90,18 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 40,
             child: ListView.builder(
-  scrollDirection: Axis.horizontal,
-  itemCount: kGenres.length,
-  itemBuilder: (BuildContext context, int index) {
-    String genre = kGenres.keys.elementAt(index);
-    // debugPrint(genre);
-    String enGenre = genre;
-    String ptBrGenre = kGenres[genre]!;
-    return SizedBox(
-      width: 150,
-      child: FilterOption(ptGenre: ptBrGenre, enGenre: enGenre),
-    );
-  },
-),
+              scrollDirection: Axis.horizontal,
+              itemCount: kGenres.length,
+              itemBuilder: (BuildContext context, int index) {
+                String genre = kGenres.keys.elementAt(index);
+                String enGenre = genre;
+                String ptBrGenre = kGenres[genre]!;
+                return SizedBox(
+                  width: 150,
+                  child: FilterOption(ptGenre: ptBrGenre, enGenre: enGenre),
+                );
+              },
+            ),
           ),
           const SizedBox(
             height: 10.0,
