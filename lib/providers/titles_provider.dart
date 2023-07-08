@@ -44,7 +44,7 @@ class TitlesProvider with ChangeNotifier {
         return TitleInfo(
           id: elem['id'] ?? 'id-X',
           url: elem['primaryImage']?['url'] ??
-              'https://nerdweb.com.br/uploads/1578511646-cropit-.jpg',
+              'https://i.imgur.com/XoSf6bh.png',
           genre: getGenres(elem['genres']?['genres']),
           rating: elem['ratingsSummary']?['aggregateRating'] ?? 0.0,
           title: elem['titleText']?['text'] ?? 'Não fornecido',
