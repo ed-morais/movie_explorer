@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
     final titlesProvider = Provider.of<TitlesProvider>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Catalog Flix'),
+        title: const Text('Movie Explorer'),
         actions: [
           IconButton(
             onPressed: () {
