@@ -74,9 +74,11 @@ class _ShowMoreTitleState extends State<ShowMoreTitle> {
                     ),
                   ),
                   const SizedBox(height: 10.0),
-
-                   Center(
-                    child: RatingStars(rating: widget.titleInfos.rating != null ?  widget.titleInfos.rating!.toDouble() : 0.0 ),
+                  Center(
+                    child: RatingStars(
+                        rating: widget.titleInfos.rating != null
+                            ? widget.titleInfos.rating!.toDouble()
+                            : 0.0),
                   ),
                   const SizedBox(height: 10.0),
                   Row(
@@ -149,17 +151,21 @@ class _ShowMoreTitleState extends State<ShowMoreTitle> {
                     ),
                   ),
                   if (widget.titleInfos.isSerie)
-                    providerTitle.episodes.isEmpty ? const LinearProgressIndicator(color: Colors.green,) :
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: widget.titleInfos.seasons,
-                        itemBuilder: (context, index) =>
-                            SeasonTitle(index: index + 1),
-                      ),
-                    ),
+                    providerTitle.episodes.isEmpty
+                        ? LinearProgressIndicator(
+                            color: Colors.purple.shade800,
+                          )
+                        : Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 30.0),
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: widget.titleInfos.seasons,
+                              itemBuilder: (context, index) =>
+                                  SeasonTitle(index: index + 1),
+                            ),
+                          ),
                 ],
               ),
             ),
@@ -169,4 +175,3 @@ class _ShowMoreTitleState extends State<ShowMoreTitle> {
     );
   }
 }
-

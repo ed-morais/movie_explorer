@@ -25,18 +25,21 @@ class SeasonTitle extends StatelessWidget {
             fontSize: 20.0,
           ),
         ),
-        const Divider(color: Colors.green,),
-        const SizedBox(height: 15.0,),
-        SizedBox( // Usando SizedBox para definir uma altura para o ListView
+        Divider(
+          color: Colors.purple.shade800,
+        ),
+        const SizedBox(
+          height: 15.0,
+        ),
+        SizedBox(
+          // Usando SizedBox para definir uma altura para o ListView
           height: 180, // Defina a altura desejada aqui
           child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: titleSeason.episodes.length,
-                itemBuilder: ((context, index) =>  EpisodeCard(episodeinfo: titleSeason.episodes[index]))
-                  
-              ),
-          
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: titleSeason.episodes.length,
+              itemBuilder: ((context, index) =>
+                  EpisodeCard(episodeinfo: titleSeason.episodes[index]))),
         ),
       ],
     );

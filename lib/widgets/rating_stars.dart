@@ -11,15 +11,14 @@ class RatingStars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RatingBarIndicator(
-    rating: rating!/2,
-    itemBuilder: (context, index) => const Icon(
-         Icons.star,
-         color: Colors.green,
-    ),
-    itemCount: 5,
-    itemSize: 30.0,
-    direction: Axis.horizontal,
-);
-    
+      rating: rating! / 2,
+      itemBuilder: (context, index) => Icon(
+        Icons.star,
+        color: Colors.purple.shade800,
+      ),
+      itemCount: 5,
+      itemSize: 30.0,
+      direction: Axis.horizontal,
+    );
   }
 }

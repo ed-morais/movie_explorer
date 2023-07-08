@@ -19,8 +19,8 @@ class _HomePageState extends State<HomePage> {
   Widget indicatorRequest = Center(
     child: Container(
       margin: const EdgeInsets.all(30.0),
-      child: const CircularProgressIndicator(
-        color: Colors.green,
+      child: CircularProgressIndicator(
+        color: Colors.purple.shade800,
       ),
     ),
   );

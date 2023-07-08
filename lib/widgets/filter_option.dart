@@ -25,9 +25,9 @@ class FilterOption extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
-        decoration: const BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        decoration: BoxDecoration(
+            color: Colors.purple.shade800,
+            borderRadius: const BorderRadius.all(Radius.circular(10.0))),
         child: Text(
           ptGenre,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),

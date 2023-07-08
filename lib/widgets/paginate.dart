@@ -22,14 +22,14 @@ class _PaginateState extends State<Paginate> {
       height: 50.0,
       width: MediaQuery.of(context).size.width * .6, // this prop is optional
       paginateButtonStyles: PaginateButtonStyles(
-        backgroundColor: Colors.green,
-      ),
+          backgroundColor: Colors.purple.shade800,
+          activeBackgroundColor: Colors.purple.shade900),
       prevButtonStyles: PaginateSkipButton(
-          buttonBackgroundColor: Colors.green,
+          buttonBackgroundColor: Colors.purple.shade800,
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20), bottomLeft: Radius.circular(20))),
       nextButtonStyles: PaginateSkipButton(
-          buttonBackgroundColor: Colors.green,
+          buttonBackgroundColor: Colors.purple.shade800,
           borderRadius: const BorderRadius.only(
               topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
       onPageChange: (number) async {
